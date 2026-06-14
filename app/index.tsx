@@ -1,10 +1,11 @@
-import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
-import { FlatList, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'
+import { router, useFocusEffect } from 'expo-router'
+import { useCallback, useEffect, useState } from 'react'
+import { FlatList, Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
 
-import { EventCard } from '@/components/event-card';
-import { Colors } from '@/constants/colors';
-import { loadEvents, saveEvents, type TrackedEvent } from '@/utils/storage';
+import { EventCard } from '@/components/event-card'
+import { Colors } from '@/constants/colors'
+import { loadEvents, saveEvents, type TrackedEvent } from '@/utils/storage'
 
 export default function Index() {
   const [events, setEvents] = useState<TrackedEvent[]>([]);
@@ -40,7 +41,7 @@ export default function Index() {
       <View style={styles.topBar}>
         <Text style={styles.title}>84 Years</Text>
         <Pressable style={styles.addBtn} onPress={() => router.push('/add' as never)}>
-          <Text style={styles.addBtnIcon}>+</Text>
+          <AntDesign name="plus" size={20} color="#fff" />
         </Pressable>
       </View>
 
@@ -91,12 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.accent,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  addBtnIcon: {
-    color: '#fff',
-    fontSize: 24,
-    lineHeight: 28,
-    fontWeight: '300',
   },
   list: {
     padding: 16,
