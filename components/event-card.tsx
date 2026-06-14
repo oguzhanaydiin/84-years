@@ -10,7 +10,7 @@ interface Props {
   onDelete: (id: string) => void;
 }
 
-const UNITS = ['yr', 'mo', 'd', 'h', 'm', 's'] as const;
+const UNITS = ['year', 'month', 'day', 'hour', 'min', 'sec'] as const;
 
 export function EventCard({ event, onDelete }: Props) {
   const e = getElapsed(event.timestamp);
