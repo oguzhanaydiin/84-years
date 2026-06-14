@@ -1,8 +1,8 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker'
+import { useState } from 'react'
+import { Platform, Pressable, StyleSheet, Text } from 'react-native'
 
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/constants/colors'
 
 export interface DateFieldProps {
   label: string;
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 18,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
+    gap: 12,
     alignItems: 'center',
     marginBottom: 10,
   },

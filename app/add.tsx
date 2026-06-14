@@ -21,19 +21,21 @@ export default function Add() {
 
   const canSave = name.trim().length > 0;
 
-  const save = async (useNow: boolean) => {
+  const save = async () => {
     if (!canSave) return;
 
     const newEvent: TrackedEvent = {
       id: Date.now().toString(),
       name: name.trim(),
-      timestamp: useNow ? Date.now() : date.getTime(),
+      timestamp: date.getTime(),
     };
 
     const existing = await loadEvents();
     await saveEvents([newEvent, ...existing]);
     router.back();
   };
+
+  const useNow = () => setDate(new Date());
 
   return (
     <KeyboardAvoidingView
@@ -91,7 +93,7 @@ export default function Add() {
       <View style={styles.footer}>
         <Pressable
           style={[styles.primaryBtn, !canSave && styles.disabled]}
-          onPress={() => save(false)}
+          onPress={() => save()}
           disabled={!canSave}
         >
           <Text style={styles.primaryBtnText}>Start Tracking</Text>
@@ -99,7 +101,7 @@ export default function Add() {
 
         <Pressable
           style={[styles.secondaryBtn, !canSave && styles.disabled]}
-          onPress={() => save(true)}
+          onPress={useNow}
           disabled={!canSave}
         >
           <Text style={styles.secondaryBtnText}>Use right now instead</Text>
