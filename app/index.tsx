@@ -9,8 +9,13 @@ import { loadEvents, saveEvents, type TrackedEvent } from '@/utils/storage'
 
 export default function Index() {
   const [events, setEvents] = useState<TrackedEvent[]>([]);
-  const [tick, setTick] = useState(0);
+  const [now, setNow] = useState(() => Date.now());
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -20,11 +25,6 @@ export default function Index() {
       });
     }, []),
   );
-
-  useEffect(() => {
-    const id = setInterval(() => setTick(t => t + 1), 1000);
-    return () => clearInterval(id);
-  }, []);
 
   const deleteEvent = async (id: string) => {
     const next = events.filter(e => e.id !== id);
@@ -58,7 +58,7 @@ export default function Index() {
           contentContainerStyle={styles.list}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
-            <EventCard event={item} tick={tick} onDelete={deleteEvent} />
+            <EventCard event={item} now={now} onDelete={deleteEvent} />
           )}
         />
       )}
