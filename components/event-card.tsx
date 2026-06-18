@@ -6,14 +6,14 @@ import type { TrackedEvent } from '@/utils/storage';
 
 interface Props {
   event: TrackedEvent;
-  tick: number;
+  now: number;
   onDelete: (id: string) => void;
 }
 
 const UNITS = ['year', 'month', 'day', 'hour', 'min', 'sec'] as const;
 
-export function EventCard({ event, onDelete }: Props) {
-  const e = getElapsed(event.timestamp);
+export function EventCard({ event, now, onDelete }: Props) {
+  const e = getElapsed(event.timestamp, now);
   const values = [e.years, e.months, e.days, e.hours, e.minutes, e.seconds];
 
   return (

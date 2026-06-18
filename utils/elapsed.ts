@@ -7,8 +7,8 @@ export interface Elapsed {
   seconds: number;
 }
 
-export function getElapsed(from: number): Elapsed {
-  const now = new Date();
+export function getElapsed(from: number, nowMs = Date.now()): Elapsed {
+  const now = new Date(nowMs);
   const start = new Date(from);
 
   let years = now.getFullYear() - start.getFullYear();
